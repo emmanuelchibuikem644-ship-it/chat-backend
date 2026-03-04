@@ -66,7 +66,7 @@ If distress seems severe, suggest trusted human support.
 
     return res.data.choices[0].message.content;
   } catch (err) {
-    console.error("❌ OpenRouter error:", err.response?.data || err.message);
+    console.error(" OpenRouter error:", err.response?.data || err.message);
     return "I’m here with you, but I’m having trouble responding right now.";
   }
 }
