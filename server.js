@@ -5,21 +5,21 @@ const axios = require("axios");
 
 /* ================= ENV CHECK ================= */
 if (!process.env.OPENROUTER_API_KEY) {
-  console.error("❌ OPENROUTER_API_KEY missing in .env");
+  console.error(" OPENROUTER_API_KEY missing in .env");
   process.exit(1);
 }
 
 if (!process.env.MONGO_URI) {
-  console.error("❌ MONGO_URI missing in .env");
+  console.error(" MONGO_URI missing in .env");
   process.exit(1);
 }
   
 /* ================= MONGODB ================= */
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB connected"))
+  .then(() => console.log(" MongoDB connected"))
   .catch((err) => {
-    console.error("❌ MongoDB error:", err);
+    console.error(" MongoDB error:", err);
     process.exit(1);
   });
 
@@ -72,8 +72,10 @@ If distress seems severe, suggest trusted human support.
 }
 
 /* ================= WEBSOCKET ================= */
-const wss = new WebSocket.Server({ port: 4000 });
-console.log("✅ WebSocket server running on port 4000");
+// ✅ Updated for Render deployment
+const PORT = process.env.PORT || 4000; 
+const wss = new WebSocket.Server({ port: PORT });
+console.log(`✅ WebSocket server running on port ${PORT}`);
 
 wss.on("connection", async (ws) => {
   console.log("🔌 Client connected");
@@ -136,26 +138,3 @@ function broadcast(message) {
     }
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
